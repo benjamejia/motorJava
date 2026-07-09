@@ -1,0 +1,8 @@
+Tareas de hoy
+
+- Un JFrame [listo]
+- Un Jpanel [listo]
+- Dibujar un cuadro rojo con Graphics2d [listo]
+- Mover el cuadro rojo[listo]
+- Hacer minijuego pong []
+
