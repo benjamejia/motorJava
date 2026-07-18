@@ -13,9 +13,9 @@ public class Ball extends Entity {
 
     public Ball(GamePanel gp){
         this.gp = gp;
-        x = 0;
+        x = 500;
         y = 0;
-        speedX = 1;
+        speedX = -1;
         speedY = 1;
     }
 
@@ -32,6 +32,7 @@ public class Ball extends Entity {
 
         if(getCollider().intersects(gp.player.rectangle())){
             speedX *= -1;
+            x = this.gp.player.x + this.gp.player.sizeWidth;
         };
     }
 
@@ -41,6 +42,6 @@ public class Ball extends Entity {
 
     public void draw(Graphics2D g2){
         g2.setColor(Color.white);
-        g2.fillOval(this.x, this.y, 5, 5);
+        g2.fillOval(x, y, 5, 5);
     }
 }

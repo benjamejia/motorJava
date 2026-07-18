@@ -4,5 +4,8 @@ Tareas de hoy
 - Un Jpanel [listo]
 - Dibujar un cuadro rojo con Graphics2d [listo]
 - Mover el cuadro rojo[listo]
+- Mover el rectangulo a voluntad [listo]
 - Hacer minijuego pong []
+	- vidas [listo]
+	- gameOver []
 

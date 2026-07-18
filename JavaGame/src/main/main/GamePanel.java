@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Label;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,10 +17,13 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
     int playerSpeedX = 1;
     int playerSpeedY = 1;
     Thread gameThread;
-    public Player player = new Player(this);
+    KeyHandler kh = new KeyHandler();
+    public Player player = new Player(this, kh);
     public Ball ball = new Ball(this);
 
     public GamePanel(){
+        this.addKeyListener(kh);
+        this.setFocusable(true);
         this.setPreferredSize(new Dimension(600, 500));
         this.setBackground(Color.BLACK);
     }
