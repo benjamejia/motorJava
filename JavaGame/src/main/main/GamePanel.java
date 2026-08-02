@@ -3,23 +3,24 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Label;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-import entitys.Ball;
-import entitys.Player;
+import entitys.snake.Fruit;
+import entitys.snake.Snake;
+
 
 public class GamePanel extends JPanel implements KeyListener, Runnable {
 
-    int playerSpeedX = 1;
-    int playerSpeedY = 1;
+    int fps = 10;
     Thread gameThread;
     KeyHandler kh = new KeyHandler();
-    public Player player = new Player(this, kh);
-    public Ball ball = new Ball(this);
+    public Snake snake = new Snake(this, kh);
+    public Fruit fruit = new Fruit(this);
+    //public Player player = new Player(this, kh);
+    //public Ball ball = new Ball(this);
 
     public GamePanel(){
         this.addKeyListener(kh);
@@ -35,8 +36,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void run() {
-
-        double drawInterval = 1000000000.0 / 200; // 60 FPS
+        double drawInterval = 1000000000.0 / fps;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -58,8 +58,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void update() {
-        player.update();
-        ball.update();
+        snake.update();
     }
 
     @Override
@@ -67,8 +66,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        player.draw(g2);
-        ball.draw(g2);
+        snake.draw(g2);
+        fruit.draw(g2);
+        fruit.drawColliders(g2);
     }
 
     @Override

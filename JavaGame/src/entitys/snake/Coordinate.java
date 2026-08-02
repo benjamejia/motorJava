@@ -1,12 +1,12 @@
-package entitys;
+package entitys.snake;
 
-public class Entity {
+public class Coordinate {
     private int x;
     private int y;
 
-    public Entity(){
-        x = 0;
-        y = 0;
+    public Coordinate(int x,int y){
+        this.x = x;
+        this.y = y;
     }
 
     public int getX(){
