@@ -1,20 +1,17 @@
-package entitys.snake;
+package games.snake;
 
-import entitys.Entity;
-import main.GamePanel;
-
+import core.GamePanel;
+import entities.Entity;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import java.util.Random;
 
 public class Fruit extends Entity {
 
     GamePanel gp;
     Random random = new Random();
-    private int size = 10;
+    private final int size = 20;
 
     public Fruit(GamePanel gp){
         this.gp = gp;
@@ -29,18 +26,6 @@ public class Fruit extends Entity {
     public void foodSpawn(){
         setX(random.nextInt(gp.getWidth() - size * 2));
         setY(random.nextInt(gp.getHeight() - size * 2));
-    }
-
-    public void drawColliders(Graphics g) {
-        Color oldColor = g.getColor(); 
-        
-        g.setColor(Color.RED); 
-
-        
-        g.drawRect(getX(), getY(), size, size);
-    
-
-        g.setColor(oldColor);
     }
     
     public void draw(Graphics2D g2){

@@ -1,20 +1,19 @@
-package entitys.pong;
+package games.pong;
 
+import core.GamePanel;
+import core.KeyHandler;
+import entities.Entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
-import entitys.Entity;
-import main.GamePanel;
-import main.KeyHandler;
 
 public class Player extends Entity{
     
     GamePanel gp;
     KeyHandler kh;
-    private int sizeWidth = 5;
-    private int sizeHeight = 60;
-    private int lifes;
+    private final int sizeWidth = 5;
+    private final int sizeHeight = 60;
+    private final int lifes;
     private int speedY;
 
     public Player(GamePanel gp, KeyHandler kh){

@@ -1,16 +1,15 @@
-package entitys.pong;
+package games.pong;
 
+import core.GamePanel;
+import entities.Entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import entitys.Entity;
-import main.GamePanel;
-
 public class Ball extends Entity {
     
     GamePanel gp;
-    private int size = 5;
+    private final int size = 5;
     private int  speedX = 10;
     private int  speedY = 10;
 

@@ -1,4 +1,4 @@
-package entitys.snake;
+package games.snake;
 
 public class Coordinate {
     private int x;
