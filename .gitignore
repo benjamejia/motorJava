@@ -1,0 +1,26 @@
+# ==================================
+# Compilación de Java (Archivos binarios)
+# ==================================
+bin/
+*.class
+
+# ==================================
+# Archivos de VS Code / IDEs
+# ==================================
+.vscode/
+.settings/
+.classpath
+.project
+
+# ==================================
+# Archivos del Sistema Operativo
+# ==================================
+.DS_Store
+Thumbs.db
+
+# ==================================
+# Logs y Temporales
+# ==================================
+*.log
+*.tmp
+*.bak
