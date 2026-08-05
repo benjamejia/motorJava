@@ -6,25 +6,28 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+
 import scenes.SceneManager;
 
 
 
 public class GamePanel extends JPanel implements Runnable {
 
-    int fps = 13;
+    private final int fps = 13;
+
     Thread gameThread;
     KeyHandler kh = new KeyHandler();
     SceneManager sceneManager = new SceneManager();
-    SnakeScene snakeScene = new SnakeScene(this,kh,sceneManager);
-    //public Player player = new Player(this, kh);
-    //public Ball ball = new Ball(this);
+
 
     public GamePanel(){
         this.addKeyListener(kh);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(600, 500));
         this.setBackground(Color.BLACK);
+
+        SnakeScene initialScene = new SnakeScene(sceneManager, kh, this.getWidth(), this.getHeight());
+        sceneManager.setCurrentScene(initialScene);
     }
 
     public void startGameThread() {
@@ -56,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        snakeScene.update();
+        sceneManager.update();
     }
 
     @Override
@@ -65,7 +68,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        snakeScene.draw(g2);
+        sceneManager.draw(g2);
+
+        g2.dispose();
     }
 
 }

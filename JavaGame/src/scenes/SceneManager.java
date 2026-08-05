@@ -1,27 +1,27 @@
 package scenes;
 
-import java.util.Stack;
+import java.awt.Graphics2D;
 
 public class SceneManager {
-    Stack<Scene> stackScenes = new Stack<>();
     private Scene currentScene;
+
+    public void setCurrentScene(Scene currentScene){
+        this.currentScene = currentScene;
+        if(this.currentScene != null){
+            this.currentScene.init();
+        }
+    }
 
     public Scene getCurrentScene(){
         return currentScene;
     }
 
-    public void setCurrenScene(){
-        if(stackScenes.peek() != null){
-            currentScene = stackScenes.peek();
-        }
-        else
-        { 
-            System.out.print("No hay escenas.");
-        }
-    }
-
-    public void addEscene(Scene scene){
-        stackScenes.add(scene);
+    public void update(){
+        currentScene.update();
+    }   
+    
+    public void draw(Graphics2D g2){
+        currentScene.draw(g2);
     }
 
 }
