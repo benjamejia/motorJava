@@ -1,12 +1,17 @@
 package scenes;
 
 import java.awt.Graphics2D;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class SceneManager {
+
+    private Deque<Scene> stackScenes = new ArrayDeque<>();
     private Scene currentScene;
 
     public void setCurrentScene(Scene currentScene){
-        this.currentScene = currentScene;
+        stackScenes.addFirst(currentScene);
+        this.currentScene = stackScenes.peekFirst();
         if(this.currentScene != null){
             this.currentScene.init();
         }
@@ -16,12 +21,23 @@ public class SceneManager {
         return currentScene;
     }
 
+    public void deleteCurrentScene(){
+        stackScenes.removeFirst();
+        if(stackScenes.isEmpty() == false){
+            this.currentScene = stackScenes.peekFirst();
+        }else{
+            System.out.println("No hay escenas en el stack.");
+        }
+    }
+
     public void update(){
         currentScene.update();
     }   
     
     public void draw(Graphics2D g2){
-        currentScene.draw(g2);
+        for(Scene scene: stackScenes){
+            scene.draw(g2);
+        }
     }
 
 }

@@ -13,20 +13,21 @@ import scenes.SceneManager;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    private final int fps = 13;
-
     Thread gameThread;
     KeyHandler kh = new KeyHandler();
     SceneManager sceneManager = new SceneManager();
 
+    private final int fps = 13;
+    private final int sizeWidth = 600;
+    private final int sizeHeight = 500;
 
     public GamePanel(){
         this.addKeyListener(kh);
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(600, 500));
+        this.setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         this.setBackground(Color.BLACK);
 
-        SnakeScene initialScene = new SnakeScene(sceneManager, kh, this.getWidth(), this.getHeight());
+        SnakeScene initialScene = new SnakeScene(sceneManager, kh, sizeWidth, sizeHeight);
         sceneManager.setCurrentScene(initialScene);
     }
 
@@ -69,8 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         sceneManager.draw(g2);
-
-        g2.dispose();
+        
     }
 
 }

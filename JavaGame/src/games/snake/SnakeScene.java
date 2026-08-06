@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import core.KeyHandler;
+import scenes.MenuScene;
 import scenes.Scene;
 import scenes.SceneManager;
 
@@ -68,6 +69,10 @@ public class SnakeScene extends Scene{
             }
         }
 
+        if(keyHandler.consumeKey(KeyEvent.VK_ESCAPE)){
+            sceneManager.setCurrentScene(new MenuScene(sceneManager,keyHandler, sizeWidth, sizeHeight));
+        }
+
         if(snake.getCollider().intersects(fruit.getCollider())){
             grow();
             foodSpawn();
@@ -86,10 +91,12 @@ public class SnakeScene extends Scene{
 
         g2.setColor(Color.red);
         g2.fillOval(fruit.getX(), fruit.getY(), fruit.getSize(), fruit.getSize());
+
     }
 
     @Override
     public void dispose() {
+
     }
 
     public void foodSpawn(){
