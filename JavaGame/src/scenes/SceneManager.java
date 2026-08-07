@@ -1,27 +1,47 @@
 package scenes;
 
-import java.util.Stack;
+import java.awt.Graphics2D;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class SceneManager {
-    Stack<Scene> stackScenes = new Stack<>();
+
+    private Deque<Scene> stackScenes = new ArrayDeque<>();
     private Scene currentScene;
+
+    public void setCurrentScene(Scene currentScene){
+        stackScenes.addFirst(currentScene);
+        this.currentScene = stackScenes.peekFirst();
+        if(this.currentScene != null){
+            this.currentScene.init();
+        }
+    }
+
+    public void clearStack(){
+        stackScenes.clear();
+    }
 
     public Scene getCurrentScene(){
         return currentScene;
     }
 
-    public void setCurrenScene(){
-        if(stackScenes.peek() != null){
-            currentScene = stackScenes.peek();
-        }
-        else
-        { 
-            System.out.print("No hay escenas.");
+    public void deleteCurrentScene(){
+        stackScenes.removeFirst();
+        if(stackScenes.isEmpty() == false){
+            this.currentScene = stackScenes.peekFirst();
+        }else{
+            System.out.println("No hay escenas en el stack.");
         }
     }
 
-    public void addEscene(Scene scene){
-        stackScenes.add(scene);
+    public void update(){
+        currentScene.update();
+    }   
+    
+    public void draw(Graphics2D g2){
+        for(Scene scene: stackScenes){
+            scene.draw(g2);
+        }
     }
 
 }

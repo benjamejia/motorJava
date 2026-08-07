@@ -1,27 +1,47 @@
 package entities;
 
 public class Entity {
-    private int x;
-    private int y;
+    private int col;
+    private int row;
+
+    private float x;
+    private float y;
+
+    public float getX() {
+        return x * col;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+
+    }
+
+    public float getY() {
+        return row * y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
 
     public Entity(){
-        x = 0;
-        y = 0;
+        col = 0;
+        row = 0;
     }
 
-    public int getX(){
-        return x;
+    public int getCol(){
+        return col;
     }
 
-    public int getY(){
-        return y;
+    public int getRow(){
+        return row;
     }
 
-    public void setX(int x){
-        this.x = x;
+    public void setCol(int col){
+        this.col = col;
     }
 
-    public void setY(int y){
-        this.y = y;
+    public void setRow(int row){
+        this.row = row;
     }
 }

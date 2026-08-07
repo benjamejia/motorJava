@@ -1,28 +1,27 @@
 package games.snake;
 
-import core.GamePanel;
-import core.KeyHandler;
 import entities.Entity;
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 
 
 public class Snake extends Entity{
 
     private int score = 0;
-    private final int sizeWidth = 25;
-    private final int sizeHeight = 25;
+    private final int tileSize;
     private final Deque<Coordinate> bodySnake = new ArrayDeque<>();
     
-    public Snake(){
-        setX(50);
-        setY(50);
-        bodySnake.add(new Coordinate(getX(), getY())); // cola
-        bodySnake.add(new Coordinate(getX() + sizeWidth, getY()));
+    public Snake(Coordinate initialPosition, int tileSize){
+        clearBodySnake();
+        setCol(initialPosition.getCol());
+        setRow(initialPosition.getRow());
+        bodySnake.add(initialPosition);
+        bodySnake.add(new Coordinate(initialPosition.getCol() + 1, initialPosition.getRow()));
+
+        this.tileSize = tileSize;
     }
 
     public void increaseScore(int increase){
@@ -30,7 +29,19 @@ public class Snake extends Entity{
     }
 
     public void addBody(Coordinate coordinate){
-        bodySnake.add(new Coordinate(coordinate.getX(),coordinate.getY()));
+        bodySnake.add(new Coordinate(coordinate.getCol(),coordinate.getRow()));
+    }
+
+    public void addBodyLast(Coordinate coordinate){
+        bodySnake.addLast(new Coordinate(coordinate.getCol(), coordinate.getRow()));
+    }
+
+    public void removeHead(){
+        bodySnake.poll();
+    }
+
+    public Collection<Coordinate> getBodySnake() {
+        return Collections.unmodifiableCollection(bodySnake);
     }
 
     public Coordinate getLastSnakeElement(){
@@ -41,47 +52,16 @@ public class Snake extends Entity{
         return  bodySnake.getFirst();
     }
 
-    public int getSizeWidth(){
-        return sizeWidth;
+    public int getScore(){
+        return score;
     }
 
-    public int getSizeheigth(){
-        return sizeHeight;
+    public void resetScore(){
+        score = 0;
     }
 
-    public void update(){
-        getCollider();
-
-        switch (kh.getTeclaActual()) {
-            case KeyEvent.VK_D -> {
-                bodySnake.add(new Coordinate(bodySnake.getLast().getX() + sizeWidth, bodySnake.getLast().getY()));
-                bodySnake.pollFirst();
-            }
-
-            case KeyEvent.VK_W -> {
-                bodySnake.add(new Coordinate(bodySnake.getLast().getX(), bodySnake.getLast().getY() - sizeHeight));
-                bodySnake.pollFirst();
-            }
-
-            case KeyEvent.VK_S -> {
-                bodySnake.add(new Coordinate(bodySnake.getLast().getX(), bodySnake.getLast().getY() + sizeHeight));
-                bodySnake.pollFirst();
-            }
-
-            case KeyEvent.VK_A -> {
-                bodySnake.add(new Coordinate(bodySnake.getLast().getX() - sizeWidth, bodySnake.getLast().getY()));
-                bodySnake.pollFirst();
-            }
-
-            default -> {
-            }
-        }
-
-        if(getCollider().intersects(gp.fruit.getCollider())){
-            gp.fruit.foodSpawn();
-            grow();
-            score += 10;
-        }
+    public void clearBodySnake(){
+        bodySnake.clear();
     }
 
     public Rectangle getCollider(){
@@ -91,15 +71,6 @@ public class Snake extends Entity{
             return null;
         }
 
-        return new Rectangle(head.getX(),head.getY(),sizeWidth,sizeHeight);
-    }
-
-    public void draw(Graphics2D g2){
-        for(Coordinate coordinate : bodySnake) {
-            g2.setColor(Color.WHITE);
-            g2.fillRect(coordinate.getX(), coordinate.getY(), sizeWidth, sizeHeight);
-        }
-
-        g2.drawString("Score: " + score, 500, 20);
+        return new Rectangle(head.getCol() * 20, head.getRow() * 20, tileSize,tileSize);
     }
 }

@@ -1,27 +1,27 @@
 package games.snake;
 
 public class Coordinate {
-    private int x;
-    private int y;
+    private int col;
+    private int row;
 
-    public Coordinate(int x,int y){
-        this.x = x;
-        this.y = y;
+    public Coordinate(int col,int row){
+        this.col = col;
+        this.row = row;
     }
 
-    public int getX(){
-        return x;
+    public int getCol(){
+        return col;
     }
 
-    public int getY(){
-        return y;
+    public int getRow(){
+        return row;
     }
 
-    public void setX(int x){
-        this.x = x;
+    public void setCol(int col){
+        this.col = col;
     }
 
-    public void setY(int y){
-        this.y = y;
+    public void setRow(int row){
+        this.row = row;
     }
 }

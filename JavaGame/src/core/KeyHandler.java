@@ -7,13 +7,16 @@ public class KeyHandler implements KeyListener {
 
     private boolean up,down,space,left,right;
     private int teclaActual = KeyEvent.VK_D; 
-    private boolean teclaPresionada = false;
+    private int teclaPresionada = 0;
+
+    public void setTeclaPresionada(int teclaPresionada) {
+        this.teclaPresionada = teclaPresionada;
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int codigo = e.getKeyCode();
         teclaActual = e.getKeyCode();
-        teclaPresionada = true;
         if(codigo == KeyEvent.VK_W) up = true;
         if(codigo == KeyEvent.VK_S) down = true;
         if(codigo == KeyEvent.VK_LEFT) left = true;
@@ -24,6 +27,7 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int codigo = e.getKeyCode();
+        teclaPresionada = e.getKeyCode();
         if(codigo == KeyEvent.VK_W) up = false;
         if(codigo == KeyEvent.VK_S) down = false;
         if(codigo == KeyEvent.VK_LEFT) left = false;
@@ -41,11 +45,19 @@ public class KeyHandler implements KeyListener {
         if(codigo == KeyEvent.VK_SPACE) space = true;
     }
 
+    public boolean consumeKey(int keyCode){
+        if(teclaPresionada == keyCode){
+            teclaPresionada = 0;
+            return true;
+        }
+        return false;
+    }
+
     public int getTeclaActual(){
         return teclaActual;
     }
 
-    public boolean getTeclaPresionada(){
+    public int getTeclaPresionada(){
         return teclaPresionada;
     }
 
