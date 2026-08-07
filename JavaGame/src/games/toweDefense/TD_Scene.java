@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import core.KeyHandler;
-import scenes.MenuScene;
+import scenes.GameOverScene;
 import scenes.Scene;
 import scenes.SceneManager;
 
@@ -51,7 +51,7 @@ public class TD_Scene extends Scene{
         }
         //Pausa
         if(keyHandler.consumeKey(KeyEvent.VK_ESCAPE)){
-            sceneManager.setCurrentScene(new MenuScene(sceneManager,keyHandler,sizeWidth,sizeHeight));
+            sceneManager.setCurrentScene(new GameOverScene(sceneManager,keyHandler,sizeWidth,sizeHeight));
         }
     }
 

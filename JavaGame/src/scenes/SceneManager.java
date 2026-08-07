@@ -17,6 +17,10 @@ public class SceneManager {
         }
     }
 
+    public void clearStack(){
+        stackScenes.clear();
+    }
+
     public Scene getCurrentScene(){
         return currentScene;
     }

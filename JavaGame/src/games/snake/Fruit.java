@@ -8,18 +8,16 @@ public class Fruit extends Entity {
 
     Random random = new Random();
 
-    private final int size = 20;
+    private final int tileSize;
 
-    public Fruit(Coordinate intialPosition){
-        setX(intialPosition.getX());
-        setY(intialPosition.getY());
+    public Fruit(Coordinate intialPosition, int tileSize){
+        setCol(intialPosition.getCol());
+        setRow(intialPosition.getRow());
+
+        this.tileSize = tileSize;
     }
-
-    public int getSize(){
-        return size;
-    }
-
+    
     public Rectangle getCollider(){
-        return new Rectangle(getX(),getY(),size,size);
+        return new Rectangle(getCol() * 20,getRow() * 20,tileSize,tileSize);
     }
 }

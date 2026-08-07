@@ -9,6 +9,10 @@ public class KeyHandler implements KeyListener {
     private int teclaActual = KeyEvent.VK_D; 
     private int teclaPresionada = 0;
 
+    public void setTeclaPresionada(int teclaPresionada) {
+        this.teclaPresionada = teclaPresionada;
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int codigo = e.getKeyCode();

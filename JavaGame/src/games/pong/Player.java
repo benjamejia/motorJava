@@ -55,12 +55,12 @@ public class Player extends Entity{
     }
 
     public Rectangle rectangle(){
-        return new Rectangle(getX(),getY(),sizeWidth,sizeHeight);
+        return new Rectangle(getCol(),getRow(),sizeWidth,sizeHeight);
     }
 
     public void draw(Graphics2D graphics2d){
         graphics2d.setColor(Color.white );
-        graphics2d.fillRect(getX(),getY(), sizeWidth, sizeHeight);
+        graphics2d.fillRect(getCol(),getRow(), sizeWidth, sizeHeight);
         graphics2d.drawString("HP:" + lifes, 500, 20);
     }
 

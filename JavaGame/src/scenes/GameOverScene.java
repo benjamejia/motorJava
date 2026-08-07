@@ -7,14 +7,14 @@ import java.awt.event.KeyEvent;
 
 import core.KeyHandler;
 
-public class MenuScene extends Scene{
+public class GameOverScene extends Scene{
 
     SceneManager sceneManager;
     KeyHandler keyHandler;
     private int sizeWidth;
     private int sizeHeight;
 
-    public MenuScene(SceneManager sm, KeyHandler kh, int sizeWidth, int sizeHeight){
+    public GameOverScene(SceneManager sm, KeyHandler kh, int sizeWidth, int sizeHeight){
         this.sceneManager = sm;
         this.keyHandler = kh;
         this.sizeWidth = sizeWidth;

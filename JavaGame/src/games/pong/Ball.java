@@ -37,11 +37,11 @@ public class Ball extends Entity {
     }
 
     public Rectangle getCollider(){
-        return new Rectangle(getX(),getY(),size,size);
+        return new Rectangle(getCol(),getRow(),size,size);
     }
 
     public void draw(Graphics2D g2){
         g2.setColor(Color.white);
-        g2.fillOval(getX(),getY(), 5, 5);
+        g2.fillOval(getCol(),getRow(), 5, 5);
     }
 }
