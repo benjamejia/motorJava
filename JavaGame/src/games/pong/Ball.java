@@ -15,13 +15,13 @@ public class Ball extends Entity {
 
     public Ball(GamePanel gp){
         this.gp = gp;
-        setX(500);
-        setY(0);
+        // setX(500);
+        // setY(0);
     }
 
     public void update(){
-        setX(getX() + speedX);
-        setY(getY() + speedY);
+        // setX(getX() + speedX);
+        // setY(getY() + speedY);
 
         if(getX() <= 0 || getX() >= this.gp.getWidth() - size){
             speedX *= -1;

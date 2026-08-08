@@ -1,14 +1,15 @@
 package games.toweDefense;
 
 import entities.Entity;
+import java.awt.Rectangle;
 
 public class Enemy extends Entity {
     private int health;
-    private int gold;
+    private final int gold;
     
-    public Enemy(int x, int y, int health, int gold){
-        setX(x);
-        setY(y);
+    public Enemy(int col, int row, int health, int gold){
+        setCol(col);
+        setRow(row);
         this.health = health;
         this.gold = gold;
     }
@@ -17,7 +18,15 @@ public class Enemy extends Entity {
         return health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getGold(){
         return gold;
+    }
+
+    Rectangle getCollision(){
+        return new Rectangle();
     }
 }

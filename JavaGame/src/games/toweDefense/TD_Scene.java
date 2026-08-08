@@ -1,10 +1,9 @@
 package games.toweDefense;
 
+import core.KeyHandler;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-
-import core.KeyHandler;
-import scenes.GameOverScene;
+import scenes.MenuScene;
 import scenes.Scene;
 import scenes.SceneManager;
 
@@ -13,18 +12,15 @@ public class TD_Scene extends Scene{
     KeyHandler keyHandler;
     SceneManager sceneManager;
 
-    Tower tower;
-    Enemy enemy;
-    TowerSelector towerSelector;
+    private Tower tower;
+    private Enemy enemy;
 
     private int money;
     private int round;
     private int numberEnemies;
+
     private final int sizeWidth;
     private final int sizeHeight;
-
-    Tower torret = new Tower(0, 0, 1, 5, 45);
-    Tower sniper = new Tower(0, 0, 4, 10, 55);
 
     public TD_Scene(KeyHandler kh, SceneManager sm, int sizeW, int sizeH){
         this.keyHandler = kh;
@@ -38,10 +34,6 @@ public class TD_Scene extends Scene{
         money = 0;
         round = 0;
         numberEnemies = 0;
-
-        towerSelector = new TowerSelector();
-        towerSelector.addTower(torret);
-        towerSelector.addTower(sniper);
     }
 
     @Override
@@ -51,12 +43,17 @@ public class TD_Scene extends Scene{
         }
         //Pausa
         if(keyHandler.consumeKey(KeyEvent.VK_ESCAPE)){
-            sceneManager.setCurrentScene(new GameOverScene(sceneManager,keyHandler,sizeWidth,sizeHeight));
+            sceneManager.setCurrentScene(new MenuScene(sceneManager,keyHandler,sizeWidth,sizeHeight));
         }
     }
 
+    public int[] path;
+
     @Override
     public void draw(Graphics g) {
+        for(int i = 0; i < path.length; i++){
+            g.fillOval(i, i, i, i);
+        }
         g.drawString("Score: " + money, sizeWidth - 100, sizeHeight - 30);
         g.drawString("Round " + round, sizeWidth - 100, sizeHeight - 40);
     }
@@ -69,4 +66,27 @@ public class TD_Scene extends Scene{
 
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getNumberEnemies() {
+        return numberEnemies;
+    }
+
+    public void setNumberEnemies(int numberEnemies) {
+        this.numberEnemies = numberEnemies;
+    }
+
+     public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
+    }
 }

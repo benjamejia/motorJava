@@ -5,16 +5,14 @@ public class Grid {
     private final int sizeHeight;
     private int col;
     private int row;
-    private int tileSize;
+    public static final int TILE_SIZE = 20;
     private int[][] map;
 
-    public Grid(int sizeWidth, int sizeHeight, int tileSize){
+    public Grid(int sizeWidth, int sizeHeight){
         this.sizeWidth = sizeWidth;
         this.sizeHeight = sizeHeight;
-        this.col = sizeWidth / tileSize;
-        this.row = sizeHeight / tileSize;
-        
-        this.tileSize = tileSize;
+        this.col = sizeWidth / TILE_SIZE;
+        this.row = sizeHeight / TILE_SIZE;
     }
     
     public void initializedMap(){
@@ -22,17 +20,11 @@ public class Grid {
     }
 
     public boolean getOutOfBoundsWidth(int col){
-        if(col * getTileSize() >= sizeWidth || col * getTileSize() < 0){
-            return true;
-        }
-        return false;
+        return col * TILE_SIZE >= sizeWidth || col * TILE_SIZE < 0;
     }
 
     public boolean getOutOfBoundsHeight(int row){
-        if(row * getTileSize() >= sizeHeight || row * getTileSize() < 0){
-            return true;
-        }
-        return false;
+        return row * TILE_SIZE <= sizeHeight && row * TILE_SIZE >= 0;
     }
 
     public int[][] getMap(){
@@ -54,15 +46,4 @@ public class Grid {
     public void setRow(int row) {
         this.row = row;
     }
-
-    public int getTileSize() {
-        return tileSize;
-    }
-
-    public void setTileSize(int tileSize) {
-        this.tileSize = tileSize;
-    }
-
-    
-
 }

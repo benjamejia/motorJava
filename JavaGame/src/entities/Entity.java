@@ -1,5 +1,7 @@
 package entities;
 
+import world.Grid;
+
 public class Entity {
     private int col;
     private int row;
@@ -11,22 +13,16 @@ public class Entity {
         return x * col;
     }
 
-    public void setX(float x) {
-        this.x = x;
-
+    public void setX() {
+        this.x = col * Grid.TILE_SIZE;
     }
 
     public float getY() {
         return row * y;
     }
 
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public Entity(){
-        col = 0;
-        row = 0;
+    public void setY() {
+        this.y = row * Grid.TILE_SIZE;
     }
 
     public int getCol(){

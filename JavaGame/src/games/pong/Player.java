@@ -20,25 +20,25 @@ public class Player extends Entity{
         super();
         this.gp = gp;
         this.kh = kh;
-        setX(50);
-        setY(50);
+        setCol(2);
+        setRow(5);
         lifes = 3;
     }
 
     public void update(){
-        if(kh.isUp() == true) setY(getY() - speedY);
-        if(kh.isDown() == true) setY(getY() + speedY);
-        if(kh.isSpace() == true){
-            speedY = 2; 
-        }else{
-            speedY = 1;
-        }
+        // if(kh.isUp() == true) setY(getY() - speedY);
+        // if(kh.isDown() == true) setY(getY() + speedY);
+        // if(kh.isSpace() == true){
+        //     speedY = 2; 
+        // }else{
+        //     speedY = 1;
+        // }
 
-        if(getY() < 0){
-            setY(0);
-        }else if(getY() + sizeHeight > this.gp.getHeight()){
-           setY(gp.getHeight() - sizeHeight);
-        }
+        // if(getY() < 0){
+        //     setY(0);
+        // }else if(getY() + sizeHeight > this.gp.getHeight()){
+        //    setY(gp.getHeight() - sizeHeight);
+        // }
 
         // if(gp.ball.x == 1){
         //     lifes --;

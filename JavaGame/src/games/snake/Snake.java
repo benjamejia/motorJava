@@ -6,22 +6,19 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Deque;
+import world.Grid;
 
 
 public class Snake extends Entity{
 
     private int score = 0;
-    private final int tileSize;
     private final Deque<Coordinate> bodySnake = new ArrayDeque<>();
     
-    public Snake(Coordinate initialPosition, int tileSize){
-        clearBodySnake();
+    public Snake(Coordinate initialPosition){
         setCol(initialPosition.getCol());
         setRow(initialPosition.getRow());
         bodySnake.add(initialPosition);
         bodySnake.add(new Coordinate(initialPosition.getCol() + 1, initialPosition.getRow()));
-
-        this.tileSize = tileSize;
     }
 
     public void increaseScore(int increase){
@@ -71,6 +68,6 @@ public class Snake extends Entity{
             return null;
         }
 
-        return new Rectangle(head.getCol() * 20, head.getRow() * 20, tileSize,tileSize);
+        return new Rectangle(head.getCol() * Grid.TILE_SIZE, head.getRow() * Grid.TILE_SIZE, Grid.TILE_SIZE,Grid.TILE_SIZE);
     }
 }
