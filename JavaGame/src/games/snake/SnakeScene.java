@@ -1,5 +1,6 @@
 package games.snake;
 
+import core.GamePanel;
 import core.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,20 +18,16 @@ public class SnakeScene extends Scene{
     private final SceneManager sceneManager;
     private final KeyHandler keyHandler;
     private final Grid grid;
-    private final int sizeWidth;
-    private final int sizeHeight;
 
     Snake snake;
     Fruit fruit;
 
     private boolean gameOver = false;
 
-    public SnakeScene(SceneManager sm, KeyHandler kh, int sizeWidth, int sizeHeight){
+    public SnakeScene(SceneManager sm, KeyHandler kh){
         this.sceneManager = sm;
         this.keyHandler = kh;
-        this.sizeWidth = sizeWidth;
-        this.sizeHeight = sizeHeight;
-        grid = new Grid(sizeWidth, sizeHeight);
+        grid = new Grid();
     }
 
     @Override
@@ -65,7 +62,7 @@ public class SnakeScene extends Scene{
         }
 
         if (keyHandler.consumeKey(KeyEvent.VK_ESCAPE)) {
-            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler, sizeWidth, sizeHeight));
+            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler));
         }
 
         if(gameOver == true){
@@ -99,7 +96,7 @@ public class SnakeScene extends Scene{
         if (grid.getOutOfBoundsWidth(nextCol)) {
             keyHandler.setTeclaPresionada(0);
             gameOver = true;
-            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler, sizeWidth, sizeHeight));
+            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler));
         } else {
             snake.addBody(new Coordinate(nextCol, nextRow));
             snake.setCol(nextCol);
@@ -114,7 +111,7 @@ public class SnakeScene extends Scene{
         if (grid.getOutOfBoundsWidth(nextCol)) {
             keyHandler.setTeclaPresionada(0);
             gameOver = true;
-            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler, sizeWidth, sizeHeight));
+            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler));
         } else {
             snake.addBody(new Coordinate(nextCol, nextRow));
             snake.setCol(nextCol);
@@ -129,7 +126,7 @@ public class SnakeScene extends Scene{
         if (!grid.getOutOfBoundsHeight(nextRow)) {
             keyHandler.setTeclaPresionada(0);
             gameOver = true;
-            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler, sizeWidth, sizeHeight));
+            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler));
         } else {
             snake.addBody(new Coordinate(nextCol, nextRow));
             snake.setCol(nextCol);
@@ -144,7 +141,7 @@ public class SnakeScene extends Scene{
         if (!grid.getOutOfBoundsHeight(nextRow)) {
             keyHandler.setTeclaPresionada(0);
             gameOver = true;
-            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler, sizeWidth, sizeHeight));
+            sceneManager.setCurrentScene(new GameOverScene(sceneManager, keyHandler));
         } else {
             snake.addBody(new Coordinate(nextCol, nextRow));
             snake.setCol(nextCol);

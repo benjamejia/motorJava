@@ -1,5 +1,6 @@
 package entities;
 
+import games.snake.Coordinate;
 import world.Grid;
 
 public class Entity {
@@ -40,4 +41,14 @@ public class Entity {
     public void setRow(int row){
         this.row = row;
     }
+
+    public Coordinate getCoordinate(){
+        return new Coordinate(col, row);
+    }
+
+    public void setCoordinate(Coordinate coordinate){
+        this.col = coordinate.getCol();
+        this.row = coordinate.getRow();
+    }
+
 }

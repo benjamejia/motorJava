@@ -1,6 +1,7 @@
 package core;
 
-import games.snake.SnakeScene;
+import games.toweDefense.TD_Scene;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,17 +18,17 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler kh = new KeyHandler();
     SceneManager sceneManager = new SceneManager();
 
-    private final int fps = 13;
-    private final int sizeWidth = 600;
-    private final int sizeHeight = 500;
+    private final int fps = 6;
+    public static final int SIZE_WIDTH = 1890;
+    public static final int SIZE_HEIGHT = 1080;
 
     public GamePanel(){
         this.addKeyListener(kh);
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(sizeWidth, sizeHeight));
+        this.setPreferredSize(new Dimension(SIZE_WIDTH, SIZE_HEIGHT));
         this.setBackground(Color.BLACK);
 
-        SnakeScene initialScene = new SnakeScene(sceneManager, kh, sizeWidth, sizeHeight);
+        TD_Scene initialScene = new TD_Scene(kh, sceneManager);
         sceneManager.setCurrentScene(initialScene);
     }
 

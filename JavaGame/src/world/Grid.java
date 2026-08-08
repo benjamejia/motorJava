@@ -1,30 +1,32 @@
 package world;
 
+import core.GamePanel;
+
 public class Grid {
-    private final int sizeWidth;
-    private final int sizeHeight;
     private int col;
     private int row;
-    public static final int TILE_SIZE = 20;
+    public static final int TILE_SIZE = 90;
     private int[][] map;
 
-    public Grid(int sizeWidth, int sizeHeight){
-        this.sizeWidth = sizeWidth;
-        this.sizeHeight = sizeHeight;
-        this.col = sizeWidth / TILE_SIZE;
-        this.row = sizeHeight / TILE_SIZE;
+    public Grid(){
+        this.col = GamePanel.SIZE_WIDTH / TILE_SIZE;
+        this.row = GamePanel.SIZE_HEIGHT / TILE_SIZE;
     }
     
     public void initializedMap(){
         map = new int[col][row];
     }
 
+    public boolean getOutOfBounds(int col, int row){
+        return col * TILE_SIZE >= GamePanel.SIZE_WIDTH || row * TILE_SIZE >= GamePanel.SIZE_HEIGHT || col * TILE_SIZE < 0 || row * TILE_SIZE < 0;
+    }
+
     public boolean getOutOfBoundsWidth(int col){
-        return col * TILE_SIZE >= sizeWidth || col * TILE_SIZE < 0;
+        return col * TILE_SIZE >= GamePanel.SIZE_WIDTH || col * TILE_SIZE < 0;
     }
 
     public boolean getOutOfBoundsHeight(int row){
-        return row * TILE_SIZE <= sizeHeight && row * TILE_SIZE >= 0;
+        return row * TILE_SIZE <= GamePanel.SIZE_HEIGHT && row * TILE_SIZE >= 0;
     }
 
     public int[][] getMap(){

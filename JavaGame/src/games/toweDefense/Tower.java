@@ -1,5 +1,8 @@
 package games.toweDefense;
 
+import java.awt.Rectangle;
+
+import core.GamePanel;
 import entities.Entity;
 
 public class Tower extends Entity{
@@ -33,5 +36,9 @@ public class Tower extends Entity{
 
     public int getCost(){
         return cost;
+    }
+
+    public Rectangle getCollider(){
+        return new Rectangle(getCol() * GamePanel.SIZE_WIDTH, getRow() * GamePanel.SIZE_HEIGHT);
     }
 }
