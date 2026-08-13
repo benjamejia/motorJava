@@ -19,8 +19,8 @@ public class GamePanel extends JPanel implements Runnable {
     SceneManager sceneManager = new SceneManager();
 
     private final int fps = 6;
-    public static final int SIZE_WIDTH = 1890;
-    public static final int SIZE_HEIGHT = 1080;
+    public static final int SIZE_WIDTH = 1790;
+    public static final int SIZE_HEIGHT = 980;
 
     public GamePanel(){
         this.addKeyListener(kh);

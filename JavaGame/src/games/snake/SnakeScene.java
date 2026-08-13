@@ -1,6 +1,5 @@
 package games.snake;
 
-import core.GamePanel;
 import core.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;

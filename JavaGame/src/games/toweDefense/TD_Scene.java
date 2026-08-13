@@ -42,8 +42,9 @@ public class TD_Scene extends Scene{
     
     {18, 6}, {18, 7}, {18, 8}, {18, 9}, {18, 10},
     {18, 11}, {18, 12}
-};
-private Coordinate[] pathEnemies; 
+    };
+
+    private Coordinate[] pathEnemies; 
 
     private int enemiesPerRound = 5;
     private int enemiesPendient = 0;
@@ -63,7 +64,7 @@ private Coordinate[] pathEnemies;
         round = 0;
         enemies = new ArrayList<>();
         pathEnemies =  Coordinate.fromArray(pathRaw);
-        addTower(2, 3, 5, 20, 15);
+        addTower(2, 3, 1, 250, 15);
     }
 
     @Override
@@ -95,6 +96,8 @@ private Coordinate[] pathEnemies;
 
     @Override
     public void draw(Graphics g) {
+        g.setColor(Color.RED);
+        g.drawRect(tower.getCollider().x, tower.getCollider().y,tower.getCollider().width, tower.getCollider().height);
 
         g.setColor(Color.WHITE);
         g.drawRect(tower.getCol() * Grid.TILE_SIZE, tower.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
@@ -136,9 +139,11 @@ private Coordinate[] pathEnemies;
     }
 
     public void makeDamage(Tower tower, Enemy enemy){
-        if(tower.getCollider().intersects(enemy.getCollider())){
+        if(enemy.getCollider().intersects(tower.getCollider())){
             enemy.setHealth(enemy.getHealth() - tower.getDamage());
         }
+
+        System.out.println(enemy.getHealth());
     }
 
     public void moveEnemies() {
@@ -157,9 +162,7 @@ private Coordinate[] pathEnemies;
                 enemiesPendient--;
             }
 
-            if(tower.getCollider().intersects(enemy.getCollider())){
-                enemy.setHealth(enemy.getHealth() - tower.getDamage());
-            }
+            makeDamage(tower, enemy);
 
             if(enemy.getHealth() <= 0){
                 setMoney(getMoney() + enemy.getGold());
