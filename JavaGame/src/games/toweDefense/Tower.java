@@ -13,9 +13,7 @@ public abstract class Tower extends Entity{
         this.name = name;
         this.cost = cost;
         this.range = range;
-
-        setCol(col);
-        setRow(row);
+        super(col,row);
     }
 
     public int getCost() {

@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler kh = new KeyHandler();
     SceneManager sceneManager = new SceneManager();
 
-    private final int fps = 6;
+    private final int fps = 8;
     public static final int SIZE_WIDTH = 1790;
     public static final int SIZE_HEIGHT = 980;
 

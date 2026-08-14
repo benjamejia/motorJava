@@ -6,9 +6,8 @@ import world.Grid;
 
 public class Fruit extends Entity {
 
-    public Fruit(Coordinate intialPosition){
-        setCol(intialPosition.getCol());
-        setRow(intialPosition.getRow());
+    public Fruit(Coordinate initialPosition){
+        super(initialPosition.getCol(),initialPosition.getRow());
     }
     
     public Rectangle getCollider(){

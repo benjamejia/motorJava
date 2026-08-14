@@ -29,14 +29,8 @@ public class Turret extends Tower {
 
     @Override
     public void attack(Enemy objective, Turret origin){
-        Projectil projectil = new Projectil(getCol(), getRow(), getCol(), objective, origin);
-        projectil.shoot(objective, origin);
+        Projectil projectil = new Projectil(getCol(), getRow(), 10, objective, origin);
         bulletsActive.add(projectil);
-        
-        if(projectil.getCollider().intersects(getCollider())){
-            objective.setHealth(objective.getHealth() - projectil.getDamage());
-            bulletsActive.removeFirst();
-        }
     }
 
     public Rectangle getCollider(){

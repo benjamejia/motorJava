@@ -15,8 +15,7 @@ public class Snake extends Entity{
     private final Deque<Coordinate> bodySnake = new ArrayDeque<>();
     
     public Snake(Coordinate initialPosition){
-        setCol(initialPosition.getCol());
-        setRow(initialPosition.getRow());
+        super(initialPosition.getCol(),initialPosition.getRow());
         bodySnake.add(initialPosition);
         bodySnake.add(new Coordinate(initialPosition.getCol() + 1, initialPosition.getRow()));
     }

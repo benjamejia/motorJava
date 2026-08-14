@@ -1,17 +1,16 @@
 package games.toweDefense;
 
 import entities.Entity;
-import java.awt.Rectangle;
+import world.Grid;
 
-import core.GamePanel;
+import java.awt.Rectangle;
 
 public class Enemy extends Entity {
     private double health;
     private double damage;
 
     public Enemy(int col, int row, int health, int gold, double damage){
-        setCol(col);
-        setRow(row);
+        super(col, row);
         this.health = health;
         this.gold = gold;
         this.damage = damage;
@@ -49,6 +48,6 @@ public class Enemy extends Entity {
     }
 
     public Rectangle getCollider(){
-        return new Rectangle(this.getCol() * GamePanel.SIZE_WIDTH, this.getRow() * GamePanel.SIZE_HEIGHT);
+        return new Rectangle(this.getCol() * Grid.TILE_SIZE, this.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
     }
 }

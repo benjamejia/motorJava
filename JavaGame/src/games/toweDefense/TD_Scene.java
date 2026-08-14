@@ -65,7 +65,7 @@ public class TD_Scene extends Scene{
         round = 0;
         enemies = new ArrayList<>();
         pathEnemies =  Coordinate.fromArray(pathRaw);
-        addTower("Turret", 3, 4, 2, 3);
+        addTower("Turret", 3, 4, 7, 3);
     }
 
     @Override
@@ -87,8 +87,10 @@ public class TD_Scene extends Scene{
             }
 
             moveEnemies();
+            updateProjectiles();
 
             if(enemiesPendient == 0 && enemies.isEmpty()){
+                tower.getBulletsActive().clear();
                 roundStarted = false;
             }
 
@@ -97,29 +99,25 @@ public class TD_Scene extends Scene{
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.RED);
-        g.drawRect(tower.getCollider().x, tower.getCollider().y,tower.getCollider().width, tower.getCollider().height);
-
         g.setColor(Color.WHITE);
         g.drawRect(tower.getCol() * Grid.TILE_SIZE, tower.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
 
         g.setColor(Color.RED);
         for(Enemy enemy : enemies){
-           Coordinate coord = enemy.getCoordinate(); 
-           
             g.setColor(Color.RED);
-            if (coord != null) {
+            if (enemy != null) {
                 g.fillRect(
-                    coord.getCol() * Grid.TILE_SIZE, 
-                    coord.getRow() * Grid.TILE_SIZE, 
+                    (int)enemy.getCol() * Grid.TILE_SIZE,
+                    (int)enemy.getRow() * Grid.TILE_SIZE,
                     Grid.TILE_SIZE, 
                     Grid.TILE_SIZE
                 );
             }
         }
 
+        g.setColor(Color.BLUE);
         for(Projectil projectil : tower.getBulletsActive()){
-            g.drawOval((int)projectil.getX(),(int)projectil.getY(), 10,10);
+            g.drawOval((int)projectil.getX(), (int)projectil.getY(), 20,20);
         }
 
         g.setColor(Color.WHITE);
@@ -136,15 +134,44 @@ public class TD_Scene extends Scene{
     public void dispose() {
     }
 
+    public void updateProjectiles() {
+        Iterator<Projectil> iterator =
+            tower.getBulletsActive().iterator();
+
+        while (iterator.hasNext()) {
+
+            Projectil projectil = iterator.next();
+            projectil.update();
+            
+            Enemy enemy = projectil.getObjective();
+
+            if (enemy == null) {
+                iterator.remove();
+                continue;
+            }
+
+            if (projectil.getCollider().intersects(
+                    enemy.getCollider())) {
+
+                enemy.setHealth(enemy.getHealth() - projectil.getDamage());
+
+                iterator.remove();
+            }
+        }
+    }
+
     public void nextRound(){
         round++;
         enemiesPendient += enemiesPerRound + round * 1.2;
         roundStarted = true;
         spawnDelay = spawnDelay - 0.1;
+        tower.getBulletsActive().clear();
     }
 
     public void makeDamage(Turret tower, Enemy enemy){
-        tower.attack(enemy, tower);
+        if(enemy.getCollider().intersects(tower.getCollider())){
+            tower.attack(enemy, tower);
+        }
     }
 
     public void moveEnemies() {
