@@ -1,32 +1,42 @@
 package entities;
 
+import games.snake.Coordinate;
+import world.Grid;
+
 public class Entity {
     private int col;
     private int row;
+    private double x;
+    private double y;
 
-    private float x;
-    private float y;
-
-    public float getX() {
-        return x * col;
+    public Entity(int col, int row){
+        this.col = col;
+        this.row = row;
+        this.x = col * Grid.TILE_SIZE;
+        this.y = row * Grid.TILE_SIZE;
     }
 
-    public void setX(float x) {
+    public void setCoordinate(Coordinate coordinate){
+        this.col = coordinate.getCol();
+        this.row = coordinate.getRow();
+        this.x = col * Grid.TILE_SIZE;
+        this.y = row * Grid.TILE_SIZE;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setX(double x) {
         this.x = x;
-
     }
 
-    public float getY() {
-        return row * y;
-    }
-
-    public void setY(float y) {
+    public void setY(double y) {
         this.y = y;
-    }
-
-    public Entity(){
-        col = 0;
-        row = 0;
     }
 
     public int getCol(){
@@ -44,4 +54,9 @@ public class Entity {
     public void setRow(int row){
         this.row = row;
     }
+
+    public Coordinate getCoordinate(){
+        return new Coordinate(col, row);
+    }
+
 }

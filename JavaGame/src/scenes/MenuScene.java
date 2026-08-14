@@ -5,20 +5,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import core.GamePanel;
 import core.KeyHandler;
 
 public class MenuScene extends Scene{
 
     SceneManager sceneManager;
     KeyHandler keyHandler;
-    private int sizeWidth;
-    private int sizeHeight;
 
-    public MenuScene(SceneManager sm, KeyHandler kh, int sizeWidth, int sizeHeight){
+    public MenuScene(SceneManager sm, KeyHandler kh){
         this.sceneManager = sm;
         this.keyHandler = kh;
-        this.sizeWidth = sizeWidth;
-        this.sizeHeight = sizeHeight;
     }
 
     @Override
@@ -36,7 +33,7 @@ public class MenuScene extends Scene{
     public void draw(Graphics g) {
         g.setColor(Color.RED); 
         g.setFont(new Font("Arial", Font.BOLD, 24));
-        g.drawString("Game Over", sizeWidth / 2 - 70, sizeHeight / 2 - 50);
+        g.drawString("Game Over", GamePanel.SIZE_WIDTH / 2 - 70, GamePanel.SIZE_HEIGHT / 2 - 50);
     }
 
     @Override

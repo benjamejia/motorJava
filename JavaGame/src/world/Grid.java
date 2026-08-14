@@ -1,38 +1,32 @@
 package world;
 
+import core.GamePanel;
+
 public class Grid {
-    private final int sizeWidth;
-    private final int sizeHeight;
     private int col;
     private int row;
-    private int tileSize;
+    public static final int TILE_SIZE = 90;
     private int[][] map;
 
-    public Grid(int sizeWidth, int sizeHeight, int tileSize){
-        this.sizeWidth = sizeWidth;
-        this.sizeHeight = sizeHeight;
-        this.col = sizeWidth / tileSize;
-        this.row = sizeHeight / tileSize;
-        
-        this.tileSize = tileSize;
+    public Grid(){
+        this.col = GamePanel.SIZE_WIDTH / TILE_SIZE;
+        this.row = GamePanel.SIZE_HEIGHT / TILE_SIZE;
     }
     
     public void initializedMap(){
         map = new int[col][row];
     }
 
+    public boolean getOutOfBounds(int col, int row){
+        return col * TILE_SIZE >= GamePanel.SIZE_WIDTH || row * TILE_SIZE >= GamePanel.SIZE_HEIGHT || col * TILE_SIZE < 0 || row * TILE_SIZE < 0;
+    }
+
     public boolean getOutOfBoundsWidth(int col){
-        if(col * getTileSize() >= sizeWidth || col * getTileSize() < 0){
-            return true;
-        }
-        return false;
+        return col * TILE_SIZE >= GamePanel.SIZE_WIDTH || col * TILE_SIZE < 0;
     }
 
     public boolean getOutOfBoundsHeight(int row){
-        if(row * getTileSize() >= sizeHeight || row * getTileSize() < 0){
-            return true;
-        }
-        return false;
+        return row * TILE_SIZE <= GamePanel.SIZE_HEIGHT && row * TILE_SIZE >= 0;
     }
 
     public int[][] getMap(){
@@ -54,15 +48,4 @@ public class Grid {
     public void setRow(int row) {
         this.row = row;
     }
-
-    public int getTileSize() {
-        return tileSize;
-    }
-
-    public void setTileSize(int tileSize) {
-        this.tileSize = tileSize;
-    }
-
-    
-
 }

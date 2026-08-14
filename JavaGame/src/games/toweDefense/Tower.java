@@ -1,29 +1,37 @@
 package games.toweDefense;
 
 import entities.Entity;
+import games.toweDefense.towers.Turret;
 
-public class Tower extends Entity{
-    private int damage;
-    private int range;
-    private int cost;
+public abstract class Tower extends Entity{
 
-    public Tower(int x, int y, int damage, int range, int cost){
-        setX(x);
-        setY(y);
-        this.damage = damage;
+    String name;
+    int cost;
+    int range;
+
+    public Tower(String name, int cost, int range, int col, int row){
+        this.name = name;
+        this.cost = cost;
         this.range = range;
+        super(col,row);
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
-    public int getDamage(){
-        return damage;
-    }
-
-    public int getRange(){
+    public int getRange() {
         return range;
     }
 
-    public int getCost(){
-        return cost;
+    public void setRange(int range) {
+        this.range = range;
     }
+
+    public abstract void attack(Enemy enemy, Turret tower);
+    
 }
