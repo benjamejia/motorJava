@@ -3,6 +3,7 @@ package games.toweDefense;
 import core.GamePanel;
 import core.KeyHandler;
 import games.snake.Coordinate;
+import games.toweDefense.towers.Turret;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,13 +22,13 @@ public class TD_Scene extends Scene{
     KeyHandler keyHandler;
     SceneManager sceneManager;
     Grid grid;
-    Tower tower;
+    Turret tower;
 
     private List<Enemy> enemies;
 
     private int money;
     private int round;
-    private int mainHealth = 50;
+    private double mainHealth = 50;
 
     
     private boolean roundStarted = false;
@@ -64,7 +65,7 @@ public class TD_Scene extends Scene{
         round = 0;
         enemies = new ArrayList<>();
         pathEnemies =  Coordinate.fromArray(pathRaw);
-        addTower(2, 3, 1, 250, 15);
+        addTower("Turret", 3, 4, 2, 3);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class TD_Scene extends Scene{
             if(enemiesPendient > 0){
                 spawnTimer++;
                 if(spawnTimer >= spawnDelay && enemies.size() < enemiesPendient){
-                    enemies.add(new Enemy(0, 0, 25, 5,5));
+                    enemies.add(new Enemy(0, 0, 25, 5,1.0));
                     spawnTimer = 0;
                 }    
             }
@@ -117,6 +118,10 @@ public class TD_Scene extends Scene{
             }
         }
 
+        for(Projectil projectil : tower.getBulletsActive()){
+            g.drawOval((int)projectil.getX(),(int)projectil.getY(), 10,10);
+        }
+
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 28));
         g.drawString("Enemies alive: " + enemiesPendient, 40, GamePanel.SIZE_HEIGHT - 40);
@@ -138,12 +143,8 @@ public class TD_Scene extends Scene{
         spawnDelay = spawnDelay - 0.1;
     }
 
-    public void makeDamage(Tower tower, Enemy enemy){
-        if(enemy.getCollider().intersects(tower.getCollider())){
-            enemy.setHealth(enemy.getHealth() - tower.getDamage());
-        }
-
-        System.out.println(enemy.getHealth());
+    public void makeDamage(Turret tower, Enemy enemy){
+        tower.attack(enemy, tower);
     }
 
     public void moveEnemies() {
@@ -172,8 +173,8 @@ public class TD_Scene extends Scene{
         }
     }
 
-    public void addTower(int col, int row, int damage, int range, int cost){
-        tower = new Tower(col, row, damage, range, cost);
+    public void addTower(String name, int cost, int range, int col, int row ){
+        tower = new Turret(name, cost,range,col,row);
         setMoney(getMoney() - cost);
     }
 
@@ -201,11 +202,11 @@ public class TD_Scene extends Scene{
         this.round = round;
     }
 
-    public int getMainHealth() {
+    public double getMainHealth() {
         return mainHealth;
     }
 
-    public void setMainHealth(int mainHealth) {
+    public void setMainHealth(double mainHealth) {
         this.mainHealth = mainHealth;
     }
 

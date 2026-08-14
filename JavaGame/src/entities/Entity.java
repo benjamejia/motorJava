@@ -7,23 +7,23 @@ public class Entity {
     private int col;
     private int row;
 
-    private float x;
-    private float y;
+    private double x;
+    private double y;
 
-    public float getX() {
-        return x * col;
+    public double getX() {
+        return x;
     }
 
-    public void setX() {
-        this.x = col * Grid.TILE_SIZE;
+    public double getY() {
+        return y;
     }
 
-    public float getY() {
-        return row * y;
+    public void setX(double x) {
+        this.x = x;
     }
 
-    public void setY() {
-        this.y = row * Grid.TILE_SIZE;
+    public void setY(double y) {
+        this.y = y;
     }
 
     public int getCol(){
