@@ -1,7 +1,7 @@
-package games.toweDefense;
+package games.toweDefense.towers;
 
 import entities.Entity;
-import games.toweDefense.towers.Turret;
+import games.toweDefense.enemies.Enemy;
 
 public abstract class Tower extends Entity{
 

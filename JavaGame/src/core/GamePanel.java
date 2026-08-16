@@ -1,22 +1,23 @@
 package core;
 
-import games.toweDefense.TD_Scene;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JPanel;
 
+import scenes.MenuScene;
 import scenes.SceneManager;
-
-
 
 public class GamePanel extends JPanel implements Runnable {
 
     Thread gameThread;
     KeyHandler kh = new KeyHandler();
-    SceneManager sceneManager = new SceneManager();
+    SceneManager sceneManager;
+    MouseAdapter mouseAdapter;
 
     private final int fps = 8;
     public static final int SIZE_WIDTH = 1790;
@@ -27,9 +28,32 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(SIZE_WIDTH, SIZE_HEIGHT));
         this.setBackground(Color.BLACK);
+        this.sceneManager = new SceneManager();
+        this.sceneManager.setCurrentScene(new MenuScene(sceneManager, kh));
 
-        TD_Scene initialScene = new TD_Scene(kh, sceneManager);
-        sceneManager.setCurrentScene(initialScene);
+        MouseAdapter mouseHandler = new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                if (sceneManager.getCurrentScene() != null) {
+                    sceneManager.getCurrentScene().onMouseMove(e);
+                }
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (sceneManager.getCurrentScene() != null) {
+                    sceneManager.getCurrentScene().onMousePressed(e);
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (sceneManager.getCurrentScene() != null) {
+                    sceneManager.getCurrentScene().onMouseReleased(e);
+                }
+            }
+        };
+
+        addMouseListener(mouseHandler);
+        addMouseMotionListener(mouseHandler);
     }
 
     public void startGameThread() {
@@ -70,8 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        sceneManager.draw(g2);
-        
+        sceneManager.draw(g2);   
     }
 
 }

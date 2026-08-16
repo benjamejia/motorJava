@@ -34,6 +34,10 @@ public class SceneManager {
         }
     }
 
+    public void deleteLastScene(){
+        stackScenes.removeLast();
+    }
+
     public void update(){
         currentScene.update();
     }   

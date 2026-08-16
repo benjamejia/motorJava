@@ -1,7 +1,8 @@
-package games.toweDefense;
+package games.toweDefense.projectils;
 
 import java.awt.geom.Ellipse2D;
 import entities.Entity;
+import games.toweDefense.enemies.Enemy;
 import games.toweDefense.towers.Turret;
 
 public class Projectil extends Entity {

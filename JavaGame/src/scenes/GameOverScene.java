@@ -2,8 +2,9 @@ package scenes;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import core.GamePanel;
 import core.KeyHandler;
@@ -30,7 +31,7 @@ public class GameOverScene extends Scene{
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         g.setColor(Color.RED); 
         g.setFont(new Font("Arial", Font.BOLD, 24));
         g.drawString("Game Over", GamePanel.SIZE_WIDTH / 2 - 70, GamePanel.SIZE_HEIGHT / 2 - 50);
@@ -40,6 +41,24 @@ public class GameOverScene extends Scene{
     public void dispose() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispose'");
+    }
+
+    @Override
+    public void onMouseMove(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onMouseMove'");
+    }
+
+    @Override
+    public void onMousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onMousePressed'");
+    }
+
+    @Override
+    public void onMouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onMouseReleased'");
     }
 
 }

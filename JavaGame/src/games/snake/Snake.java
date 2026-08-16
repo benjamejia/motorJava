@@ -6,6 +6,8 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Deque;
+
+import world.Coordinate;
 import world.Grid;
 
 

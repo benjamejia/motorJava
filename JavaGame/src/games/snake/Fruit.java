@@ -2,6 +2,8 @@ package games.snake;
 
 import entities.Entity;
 import java.awt.Rectangle;
+
+import world.Coordinate;
 import world.Grid;
 
 public class Fruit extends Entity {

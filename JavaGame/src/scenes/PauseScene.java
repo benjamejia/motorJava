@@ -1,25 +1,23 @@
 package scenes;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.GamePanel;
 import core.KeyHandler;
-import games.snake.SnakeScene;
-import games.toweDefense.TD_Scene;
 import ui.GameButton;
 import ui.GameLabel;
-import core.GamePanel;
 
-public class MenuScene extends Scene{
+public class PauseScene extends Scene{
 
     SceneManager sceneManager;
     KeyHandler keyHandler;
     List<GameButton> listButtons;
     GameLabel gameLabel;
 
-    public MenuScene(SceneManager sm, KeyHandler kh){
+    public PauseScene(SceneManager sm, KeyHandler kh){
         this.sceneManager = sm;
         this.keyHandler = kh;
         listButtons = new ArrayList<>(); 
@@ -27,20 +25,15 @@ public class MenuScene extends Scene{
 
     @Override
     public void init() {
-        gameLabel = new GameLabel((GamePanel.SIZE_WIDTH - 200)/2, 90, 200, 100, "MI MOTOR", false, 50);
+        gameLabel = new GameLabel((GamePanel.SIZE_WIDTH - 200)/2, 90, 200, 100, "Pause", false, 50);
 
-        listButtons.add(new GameButton((GamePanel.SIZE_WIDTH - 300)/2, 200, "Tower Defense", 300, 100, () -> {
-            sceneManager.setCurrentScene(new TD_Scene(keyHandler, sceneManager));
-            sceneManager.deleteLastScene();
+        listButtons.add(new GameButton((GamePanel.SIZE_WIDTH - 300)/2, 200, "Resume", 300, 100, () -> {
+            sceneManager.deleteCurrentScene();
         }));
 
-        listButtons.add(new GameButton((GamePanel.SIZE_WIDTH - 300)/2, 320, "Snake", 300, 100, () -> {
-            sceneManager.setCurrentScene(new SnakeScene(sceneManager, keyHandler));
-            sceneManager.deleteLastScene();
-        }));
-
-        listButtons.add(new GameButton((GamePanel.SIZE_WIDTH - 300)/2, 440, "Salir", 300, 100, () -> {
-            System.exit(0);
+        listButtons.add(new GameButton((GamePanel.SIZE_WIDTH - 300)/2, 320, "Salir", 300, 100, () -> {
+            sceneManager.clearStack();
+            sceneManager.setCurrentScene(new MenuScene(sceneManager, keyHandler));
         }));
     }
 
@@ -50,6 +43,8 @@ public class MenuScene extends Scene{
 
     @Override
     public void draw(Graphics2D g2) {
+        g2.setColor(new Color(50, 100, 200, 180));
+        g2.fillRect(0, 0, GamePanel.SIZE_WIDTH,GamePanel.SIZE_HEIGHT);
         gameLabel.draw(g2);
 
         for(GameButton btn: listButtons){
@@ -63,24 +58,23 @@ public class MenuScene extends Scene{
     }
 
     @Override
-    public void onMouseMove(MouseEvent e) {
+    public void onMouseMove(java.awt.event.MouseEvent e) {
         for(GameButton btn : listButtons){
             btn.onMouseMove(e);
         }
     }
 
     @Override
-    public void onMousePressed(MouseEvent e) {
+    public void onMousePressed(java.awt.event.MouseEvent e) {
         for(GameButton btn : listButtons){
             btn.onMousePressed(e);
         }
     }
 
     @Override
-    public void onMouseReleased(MouseEvent e) {
+    public void onMouseReleased(java.awt.event.MouseEvent e) {
         for(GameButton btn : listButtons){
             btn.onMouseReleased(e);
         }
     }
-
 }

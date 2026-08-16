@@ -4,9 +4,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.toweDefense.Enemy;
-import games.toweDefense.Projectil;
-import games.toweDefense.Tower;
+import games.toweDefense.enemies.Enemy;
+import games.toweDefense.projectils.Projectil;
 import world.Grid;
 
 public class Turret extends Tower {

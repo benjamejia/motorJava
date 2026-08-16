@@ -1,6 +1,6 @@
 package entities;
 
-import games.snake.Coordinate;
+import world.Coordinate;
 import world.Grid;
 
 public class Entity {

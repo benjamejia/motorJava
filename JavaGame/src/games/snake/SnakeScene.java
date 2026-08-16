@@ -2,12 +2,14 @@ package games.snake;
 
 import core.KeyHandler;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 import scenes.GameOverScene;
 import scenes.Scene;
 import scenes.SceneManager;
+import world.Coordinate;
 import world.Grid;
 
 public class SnakeScene extends Scene{
@@ -70,7 +72,7 @@ public class SnakeScene extends Scene{
     }
 
     @Override
-    public void draw(Graphics g2) {
+    public void draw(Graphics2D g2) {
         for(Coordinate coordinateSnake : snake.getBodySnake()) {
             g2.setColor(Color.WHITE);
             g2.fillRect(coordinateSnake.getCol() * Grid.TILE_SIZE, coordinateSnake.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
@@ -174,6 +176,24 @@ public class SnakeScene extends Scene{
             default -> {
             }
         }
+    }
+
+    @Override
+    public void onMouseMove(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onMouseMove'");
+    }
+
+    @Override
+    public void onMousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onMousePressed'");
+    }
+
+    @Override
+    public void onMouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onMouseReleased'");
     }
 
 }

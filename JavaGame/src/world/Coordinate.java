@@ -1,4 +1,4 @@
-package games.snake;
+package world;
 
 public class Coordinate {
     private int col;

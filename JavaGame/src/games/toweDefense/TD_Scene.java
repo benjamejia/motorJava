@@ -2,19 +2,23 @@ package games.toweDefense;
 
 import core.GamePanel;
 import core.KeyHandler;
-import games.snake.Coordinate;
+import games.toweDefense.enemies.Enemy;
+import games.toweDefense.projectils.Projectil;
 import games.toweDefense.towers.Turret;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import scenes.PauseScene;
 import scenes.Scene;
 import scenes.SceneManager;
+import world.Coordinate;
 import world.Grid;
 
 public class TD_Scene extends Scene{
@@ -70,6 +74,10 @@ public class TD_Scene extends Scene{
 
     @Override
     public void update() {
+        if(keyHandler.consumeKey(KeyEvent.VK_ESCAPE)){
+            sceneManager.setCurrentScene(new PauseScene(sceneManager, keyHandler));
+        }
+
         if(keyHandler.consumeKey(KeyEvent.VK_ENTER)){
             if(!roundStarted && enemiesPendient == 0){
                 nextRound();
@@ -98,9 +106,9 @@ public class TD_Scene extends Scene{
     }
 
     @Override
-    public void draw(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.drawRect(tower.getCol() * Grid.TILE_SIZE, tower.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
+    public void draw(Graphics2D g) {
+        g.setColor(Color.GREEN);
+        g.fillRect(tower.getCol() * Grid.TILE_SIZE, tower.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
 
         g.setColor(Color.RED);
         for(Enemy enemy : enemies){
@@ -117,7 +125,7 @@ public class TD_Scene extends Scene{
 
         g.setColor(Color.BLUE);
         for(Projectil projectil : tower.getBulletsActive()){
-            g.drawOval((int)projectil.getX(), (int)projectil.getY(), 20,20);
+            g.fillOval((int)projectil.getX(), (int)projectil.getY(), 20,20);
         }
 
         g.setColor(Color.WHITE);
@@ -243,5 +251,20 @@ public class TD_Scene extends Scene{
 
     public void setEnemiesPendient(int enemiesPendient) {
         this.enemiesPendient = enemiesPendient;
+    }
+
+    @Override
+    public void onMouseMove(MouseEvent e) {
+
+    }
+
+    @Override
+    public void onMousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void onMouseReleased(MouseEvent e) {
+
     }
 }

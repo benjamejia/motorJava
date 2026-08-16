@@ -1,4 +1,4 @@
-package games.toweDefense;
+package games.toweDefense.enemies;
 
 import entities.Entity;
 import world.Grid;
