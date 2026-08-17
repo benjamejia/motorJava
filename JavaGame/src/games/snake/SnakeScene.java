@@ -46,7 +46,7 @@ public class SnakeScene extends Scene{
     }
     
    @Override
-    public void update() {
+    public void update(double deltaTime) {
         switch (keyHandler.getTeclaActual()) {
             case KeyEvent.VK_D -> moveRigth();
             case KeyEvent.VK_W -> moveUp();

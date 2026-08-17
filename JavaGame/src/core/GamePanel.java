@@ -6,9 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JPanel;
-
 import scenes.MenuScene;
 import scenes.SceneManager;
 
@@ -63,29 +61,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1000000000.0 / fps;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
-
-        while (gameThread != null) {
-
-            currentTime = System.nanoTime();
-
-            delta += (currentTime - lastTime) / drawInterval;
-
-            lastTime = currentTime;
-
-            if (delta >= 1) {
-                update();
-                repaint();
-                delta--;
-            }
+        double lastTime = System.nanoTime();
+        while(gameThread != null){
+            double beginTime = System.nanoTime();
+            double dt = (beginTime - lastTime);
+            lastTime = beginTime;
+            update(dt);
+            repaint();
         }
     }
 
-    public void update() {
-        sceneManager.update();
+    public void update(double deltaTime) {
+        sceneManager.update(deltaTime);
     }
 
     @Override

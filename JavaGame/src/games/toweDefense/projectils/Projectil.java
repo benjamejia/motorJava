@@ -1,9 +1,9 @@
 package games.toweDefense.projectils;
 
-import java.awt.geom.Ellipse2D;
 import entities.Entity;
 import games.toweDefense.enemies.Enemy;
 import games.toweDefense.towers.Turret;
+import java.awt.geom.Ellipse2D;
 
 public class Projectil extends Entity {
 
@@ -20,7 +20,7 @@ public class Projectil extends Entity {
         this.origin = origin;
     }
 
-    public void update(){
+    public void update(double deltaTime){
         if(objective == null){
             return;
         }
@@ -37,8 +37,8 @@ public class Projectil extends Entity {
             double vectorUx = diferencialX / distance;
             double vectorUy = diferencialY / distance;
 
-            setX(getX() + vectorUx * speed);
-            setY(getY() + vectorUy * speed);
+            setX(getX() + vectorUx * (speed * deltaTime));
+            setY(getY() + vectorUy * (speed * deltaTime));
         }
     }
 

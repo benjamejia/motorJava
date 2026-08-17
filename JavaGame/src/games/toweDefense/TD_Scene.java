@@ -5,7 +5,6 @@ import core.KeyHandler;
 import games.toweDefense.enemies.Enemy;
 import games.toweDefense.projectils.Projectil;
 import games.toweDefense.towers.Turret;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -14,7 +13,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import scenes.PauseScene;
 import scenes.Scene;
 import scenes.SceneManager;
@@ -73,7 +71,7 @@ public class TD_Scene extends Scene{
     }
 
     @Override
-    public void update() {
+    public void update(double deltaTime) {
         if(keyHandler.consumeKey(KeyEvent.VK_ESCAPE)){
             sceneManager.setCurrentScene(new PauseScene(sceneManager, keyHandler));
         }
@@ -94,8 +92,8 @@ public class TD_Scene extends Scene{
                 }    
             }
 
-            moveEnemies();
-            updateProjectiles();
+            moveEnemies(deltaTime);
+            updateProjectiles(deltaTime);
 
             if(enemiesPendient == 0 && enemies.isEmpty()){
                 tower.getBulletsActive().clear();
@@ -142,14 +140,14 @@ public class TD_Scene extends Scene{
     public void dispose() {
     }
 
-    public void updateProjectiles() {
+    public void updateProjectiles(double deltaTime) {
         Iterator<Projectil> iterator =
             tower.getBulletsActive().iterator();
 
         while (iterator.hasNext()) {
 
             Projectil projectil = iterator.next();
-            projectil.update();
+            projectil.update(deltaTime);
             
             Enemy enemy = projectil.getObjective();
 
@@ -182,7 +180,7 @@ public class TD_Scene extends Scene{
         }
     }
 
-    public void moveEnemies() {
+    public void moveEnemies(double deltaTime) {
     Iterator<Enemy> iterator = enemies.iterator();
 
     while (iterator.hasNext()) {

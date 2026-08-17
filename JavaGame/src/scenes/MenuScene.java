@@ -1,16 +1,15 @@
 package scenes;
 
+import core.GamePanel;
+import core.KeyHandler;
+import games.snake.SnakeScene;
+import games.toweDefense.TD_Scene;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-
-import core.KeyHandler;
-import games.snake.SnakeScene;
-import games.toweDefense.TD_Scene;
 import ui.GameButton;
 import ui.GameLabel;
-import core.GamePanel;
 
 public class MenuScene extends Scene{
 
@@ -45,7 +44,7 @@ public class MenuScene extends Scene{
     }
 
     @Override
-    public void update() {
+    public void update(double deltaTime) {
     }
 
     @Override

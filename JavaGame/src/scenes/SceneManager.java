@@ -6,7 +6,7 @@ import java.util.Deque;
 
 public class SceneManager {
 
-    private Deque<Scene> stackScenes = new ArrayDeque<>();
+    private final Deque<Scene> stackScenes = new ArrayDeque<>();
     private Scene currentScene;
 
     public void setCurrentScene(Scene currentScene){
@@ -38,8 +38,8 @@ public class SceneManager {
         stackScenes.removeLast();
     }
 
-    public void update(){
-        currentScene.update();
+    public void update(double deltaTime){
+        currentScene.update(deltaTime);
     }   
     
     public void draw(Graphics2D g2){

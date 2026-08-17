@@ -1,13 +1,12 @@
 package scenes;
 
+import core.GamePanel;
+import core.KeyHandler;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
-import core.GamePanel;
-import core.KeyHandler;
 
 public class GameOverScene extends Scene{
 
@@ -24,7 +23,7 @@ public class GameOverScene extends Scene{
     }
 
     @Override
-    public void update() {
+    public void update(double deltaTime) {
         if(keyHandler.consumeKey(KeyEvent.VK_ENTER)){
             sceneManager.deleteCurrentScene();
         }

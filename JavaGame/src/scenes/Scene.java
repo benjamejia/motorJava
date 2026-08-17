@@ -7,7 +7,7 @@ public abstract class Scene {
 
     public abstract void init();
 
-    public abstract void update();
+    public abstract void update(double deltaTime);
 
     public abstract void draw(Graphics2D g2);
 

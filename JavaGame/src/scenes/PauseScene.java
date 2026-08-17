@@ -1,12 +1,11 @@
 package scenes;
 
+import core.GamePanel;
+import core.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-
-import core.GamePanel;
-import core.KeyHandler;
 import ui.GameButton;
 import ui.GameLabel;
 
@@ -38,7 +37,7 @@ public class PauseScene extends Scene{
     }
 
     @Override
-    public void update() {
+    public void update(double deltaTime) {
     }
 
     @Override
