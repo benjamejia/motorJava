@@ -1,4 +1,4 @@
-package games.toweDefense.towers;
+package games.towerDefense.towers;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;

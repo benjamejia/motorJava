@@ -3,7 +3,7 @@ package scenes;
 import core.GamePanel;
 import core.KeyHandler;
 import games.snake.SnakeScene;
-import games.toweDefense.TD_Scene;
+import games.towerDefense.SceneTD;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class MenuScene extends Scene{
         gameLabel = new GameLabel((GamePanel.SIZE_WIDTH - 200)/2, 90, 200, 100, "MI MOTOR", false, 50);
 
         listButtons.add(new GameButton((GamePanel.SIZE_WIDTH - 300)/2, 200, "Tower Defense", 300, 100, () -> {
-            sceneManager.setCurrentScene(new TD_Scene(keyHandler, sceneManager));
+            sceneManager.setCurrentScene(new SceneTD(keyHandler, sceneManager));
             sceneManager.deleteLastScene();
         }));
 

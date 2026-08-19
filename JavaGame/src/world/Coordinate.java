@@ -3,10 +3,14 @@ package world;
 public class Coordinate {
     private int col;
     private int row;
+    private double  x;
+    private double  y;
 
     public Coordinate(int col,int row){
         this.col = col;
         this.row = row;
+        x = col * Grid.TILE_SIZE;
+        y = row * Grid.TILE_SIZE;
     }
 
     public static Coordinate[] fromArray(int[][] path){
@@ -33,5 +37,21 @@ public class Coordinate {
 
     public void setRow(int row){
         this.row = row;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

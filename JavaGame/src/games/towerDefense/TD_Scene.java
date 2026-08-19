@@ -1,10 +1,10 @@
-package games.toweDefense;
+package games.towerDefense;
 
 import core.GamePanel;
 import core.KeyHandler;
-import games.toweDefense.enemies.Enemy;
-import games.toweDefense.projectils.Projectil;
-import games.toweDefense.towers.Turret;
+import games.towerDefense.enemies.Enemy;
+import games.towerDefense.projectils.Projectil;
+import games.towerDefense.towers.Turret;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -87,7 +87,7 @@ public class TD_Scene extends Scene{
             if(enemiesPendient > 0){
                 spawnTimer++;
                 if(spawnTimer >= spawnDelay && enemies.size() < enemiesPendient){
-                    enemies.add(new Enemy(0, 0, 25, 5,1.0));
+                    enemies.add(new Enemy(0, 0));
                     spawnTimer = 0;
                 }    
             }

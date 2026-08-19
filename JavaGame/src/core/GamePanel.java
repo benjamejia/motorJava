@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import scenes.MenuScene;
 import scenes.SceneManager;
+import util.Time;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -61,13 +62,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double lastTime = System.nanoTime();
+        double beginTime = Time.getTime();
+        double endTime;
+        double dt = 0.0;
         while(gameThread != null){
-            double beginTime = System.nanoTime();
-            double dt = (beginTime - lastTime);
-            lastTime = beginTime;
             update(dt);
             repaint();
+            endTime = Time.getTime();
+            dt = endTime - beginTime;
+            beginTime = endTime;
         }
     }
 
