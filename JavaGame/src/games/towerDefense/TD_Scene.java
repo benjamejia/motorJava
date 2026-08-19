@@ -23,7 +23,6 @@ public class TD_Scene extends Scene{
 
     KeyHandler keyHandler;
     SceneManager sceneManager;
-    Grid grid;
     Turret tower;
 
     private List<Enemy> enemies;
@@ -58,7 +57,6 @@ public class TD_Scene extends Scene{
     public TD_Scene(KeyHandler kh, SceneManager sm){
         this.keyHandler = kh;
         this.sceneManager = sm;
-        grid = new Grid();
     }
 
     @Override

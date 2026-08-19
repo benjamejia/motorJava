@@ -2,18 +2,18 @@ package games.towerDefense.projectils;
 
 import entities.Entity;
 import games.towerDefense.enemies.Enemy;
-import games.towerDefense.towers.Turret;
+import games.towerDefense.towers.Tower;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
 public class Projectil extends Entity {
 
-    Enemy objective;
-    Turret origin;
-    double damage;
-
-    private double speed = 200;
+    protected Enemy objective;
+    protected Tower origin;
+    protected double damage;
+    protected double speed = 200;
     
-    public Projectil(int col, int row, double damage, Enemy objective, Turret origin){
+    public Projectil(int col, int row, double damage, Enemy objective, Tower origin){
         super(col, row);
         this.damage = damage;
         this.objective = objective;
@@ -40,6 +40,10 @@ public class Projectil extends Entity {
             setX(getX() + vectorUx * (speed * deltaTime));
             setY(getY() + vectorUy * (speed * deltaTime));
         }
+    }
+
+    public void draw(Graphics2D g2){
+        
     }
 
     public Enemy getObjective() {

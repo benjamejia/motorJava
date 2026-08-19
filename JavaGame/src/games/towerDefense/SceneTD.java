@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import scenes.PauseScene;
 import scenes.Scene;
 import scenes.SceneManager;
+import world.Grid;
 
 public class SceneTD extends Scene {
 

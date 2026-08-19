@@ -2,17 +2,19 @@ package games.towerDefense.towers;
 
 import entities.Entity;
 import games.towerDefense.enemies.Enemy;
+import games.towerDefense.projectils.Projectil;
 
-public abstract class Tower extends Entity{
-
+public class Tower extends Entity{
     String name;
     int cost;
     int range;
+    Projectil ammo;
 
-    public Tower(String name, int cost, int range, int col, int row){
+    public Tower(String name, int cost, int range, int col, int row, Projectil typeAmmo){
         this.name = name;
         this.cost = cost;
         this.range = range;
+        this.ammo = typeAmmo;
         super(col,row);
     }
 
@@ -32,6 +34,24 @@ public abstract class Tower extends Entity{
         this.range = range;
     }
 
-    public abstract void attack(Enemy enemy, Turret tower);
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void attack(Enemy enemy, Turret tower){
+        
+    };
+
+    public Projectil getAmmo() {
+        return ammo;
+    }
+
+    public void setAmmo(Projectil ammo) {
+        this.ammo = ammo;
+    }
     
 }

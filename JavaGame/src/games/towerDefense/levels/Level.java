@@ -1,8 +1,8 @@
 package games.towerDefense.levels;
 
 import games.towerDefense.Player;
+import games.towerDefense.projectils.Bullet;
 import games.towerDefense.towers.Tower;
-import games.towerDefense.towers.Turret;
 import java.awt.Graphics2D;
 
 public class Level {
@@ -13,7 +13,7 @@ public class Level {
 
     public Level(){
         round = new Round();
-        tower = new Turret("Turret", 3, 4, 7, 3);
+        tower = new Tower("Turret", 3, 4, 7, 3,);
     }
 
     public void update(double  deltaTime){
