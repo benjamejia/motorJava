@@ -1,13 +1,16 @@
 package games.towerDefense;
 
 import core.KeyHandler;
-import games.towerDefense.levels.Level;
+import games.towerDefense.level.Level;
+import games.towerDefense.projectils.Bullet;
+import games.towerDefense.towers.Turret;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import scenes.PauseScene;
 import scenes.Scene;
 import scenes.SceneManager;
+import ui.TowerUpgradePanel;
 import world.Grid;
 
 public class SceneTD extends Scene {
@@ -15,11 +18,13 @@ public class SceneTD extends Scene {
     private final KeyHandler keyHandler;
     private final SceneManager sceneManager;
     private final Level level;
+    private final TowerUpgradePanel towerUpgradePanel = new TowerUpgradePanel(20,20);
 
     public SceneTD(KeyHandler kh, SceneManager sm){
         this.keyHandler = kh;
         this.sceneManager = sm;
         level = new Level();
+        towerUpgradePanel.setTower(new Turret("Torreta", 50, 1, 10 / Grid.TILE_SIZE, 10 / Grid.TILE_SIZE, Bullet::new));
     }
     
 
@@ -40,11 +45,14 @@ public class SceneTD extends Scene {
         if(level.getRound().isRoundStarted()){
             level.update(deltaTime);
         }
+
+        
     }
 
     @Override
     public void draw(Graphics2D g2) {
         level.draw(g2);
+        towerUpgradePanel.draw(g2);
     }
 
     @Override
@@ -54,7 +62,7 @@ public class SceneTD extends Scene {
 
     @Override
     public void onMousePressed(MouseEvent e) {
-       
+        level.addTower(e.getPoint());
     }
 
     @Override

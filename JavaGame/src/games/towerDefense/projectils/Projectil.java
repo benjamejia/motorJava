@@ -11,11 +11,10 @@ public class Projectil extends Entity {
     protected Enemy objective;
     protected Tower origin;
     protected double damage;
-    protected double speed = 200;
+    protected double speed;
     
-    public Projectil(int col, int row, double damage, Enemy objective, Tower origin){
+    public Projectil(int col, int row, Enemy objective, Tower origin){
         super(col, row);
-        this.damage = damage;
         this.objective = objective;
         this.origin = origin;
     }

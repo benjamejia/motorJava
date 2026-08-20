@@ -7,9 +7,10 @@ import java.awt.Graphics2D;
 
 public class Bullet extends Projectil {
 
-    public Bullet(int col, int row, double damage, Enemy objective, Turret origin){
-        super(col, row, damage, objective, origin);
-        this.speed = 50;
+    public Bullet(int col, int row, Enemy objective, Turret origin){
+        super(col, row, objective, origin);
+        this.speed = 900;
+        this.damage = 10;
     }
 
     @Override

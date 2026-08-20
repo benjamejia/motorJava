@@ -3,18 +3,24 @@ package world;
 import core.GamePanel;
 
 public class Grid {
-    private int col;
-    private int row;
+    private final int col;
+    private final int row;
     public static final int TILE_SIZE = 90;
-    private int[][] map;
+    private Object[][] map;
 
     public Grid(){
         this.col = GamePanel.SIZE_WIDTH / TILE_SIZE;
         this.row = GamePanel.SIZE_HEIGHT / TILE_SIZE;
     }
     
-    public void initializedMap(){
-        map = new int[col][row];
+    public void initializedMap(Object o){
+        map = new Object[col][row];
+    }
+
+    public void addObject(Object o, Coordinate coords){
+        if (emptyField(coords)) return;
+
+        map[coords.getCol()][coords.getRow()] = o;
     }
 
     public boolean getOutOfBounds(int col, int row){
@@ -29,7 +35,15 @@ public class Grid {
         return row * TILE_SIZE <= GamePanel.SIZE_HEIGHT && row * TILE_SIZE >= 0;
     }
 
-    public int[][] getMap(){
+    public Object getObject(Coordinate coords){
+        return map[coords.getCol()][coords.getRow()];
+    }
+
+    public boolean emptyField(Coordinate coords){
+        return map[coords.getCol()][coords.getRow()] != null;
+    }
+
+    public Object[][] getMap(){
         return map;
     }
 
@@ -37,15 +51,7 @@ public class Grid {
         return col;
     }
 
-    public void setCol(int col) {
-        this.col = col;
-    }
-
     public int getRow() {
         return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
     }
 }

@@ -1,6 +1,7 @@
 package games.towerDefense.enemies;
 
 import entities.Entity;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import world.Coordinate;
 import world.Grid;
@@ -24,7 +25,7 @@ public class Enemy extends Entity {
 
     public Enemy(int col, int row){
         super(col, row);
-        health = 100;
+        health = 20;
         damage = 10;
         gold = 15;
         currentStep = 0;
@@ -56,6 +57,16 @@ public class Enemy extends Entity {
             setX(getX() + vectorUx * (step));
             setY(getY() + vectorUy * (step));
         }
+    }
+
+    public void draw(Graphics2D g2){
+         g2.fillRect(
+                (int)getX(),
+                (int)getY(),
+                Grid.TILE_SIZE, 
+                Grid.TILE_SIZE
+        );
+        g2.drawRect(getCollider().x, getCollider().y, getCollider().width, getCollider().height);
     }
 
     public boolean isDeath(){
@@ -96,6 +107,6 @@ public class Enemy extends Entity {
     }
 
     public Rectangle getCollider(){
-        return new Rectangle(this.getCol() * Grid.TILE_SIZE, this.getRow() * Grid.TILE_SIZE,Grid.TILE_SIZE,Grid.TILE_SIZE);
+        return new Rectangle((int)this.getX(), (int)this.getY(),Grid.TILE_SIZE,Grid.TILE_SIZE);
     }
 }

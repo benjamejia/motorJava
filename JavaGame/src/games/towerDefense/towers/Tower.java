@@ -2,20 +2,29 @@ package games.towerDefense.towers;
 
 import entities.Entity;
 import games.towerDefense.enemies.Enemy;
-import games.towerDefense.projectils.Projectil;
+import java.awt.Graphics2D;
+import java.util.List;
+import util.ProjectilFactory;
+import world.Grid;
 
 public class Tower extends Entity{
-    String name;
-    int cost;
-    int range;
-    Projectil ammo;
+    protected String name;
+    protected int cost;
+    protected int range;
+    protected ProjectilFactory projectilFactory;
 
-    public Tower(String name, int cost, int range, int col, int row, Projectil typeAmmo){
+    public Tower(String name, int cost, int range, int col, int row, ProjectilFactory projectilFactory){
         this.name = name;
         this.cost = cost;
         this.range = range;
-        this.ammo = typeAmmo;
+        this.projectilFactory = projectilFactory;
         super(col,row);
+    }
+
+    public void update(double deltaTime, List<Enemy> enemies){}
+
+    public void draw(Graphics2D g2){
+        g2.fillRect((int)getX(), (int)getY(),Grid.TILE_SIZE,Grid.TILE_SIZE);
     }
 
     public int getCost() {
@@ -45,13 +54,5 @@ public class Tower extends Entity{
     public void attack(Enemy enemy, Turret tower){
         
     };
-
-    public Projectil getAmmo() {
-        return ammo;
-    }
-
-    public void setAmmo(Projectil ammo) {
-        this.ammo = ammo;
-    }
     
 }

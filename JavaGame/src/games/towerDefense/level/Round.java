@@ -1,4 +1,4 @@
-package games.towerDefense.levels;
+package games.towerDefense.level;
 
 import core.GamePanel;
 import games.towerDefense.enemies.Enemy;
@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import world.Coordinate;
-import world.Grid;
 
 public class Round {
     private int round;
-    private final List<Enemy> enemies;
     private boolean roundStarted;
-    private final Coordinate[] pathEnemies;
-    private int enemiesPerRound;
 
+    private int enemiesPerRound;
+    private final List<Enemy> enemies;
+    private final Coordinate[] pathEnemies;
     private int enemiesPendient;
     private int enemiesKilled = 0;
+
     private double spawnTimer = 0;
     private final double spawnObjectiveTime = 2;
 
@@ -44,12 +44,7 @@ public class Round {
             for(Enemy enemy : enemies){
                 g2.setColor(Color.RED);
                 if (enemy != null) {
-                    g2.fillRect(
-                        (int)enemy.getX(),
-                        (int)enemy.getY(),
-                        Grid.TILE_SIZE, 
-                        Grid.TILE_SIZE
-                    );
+                   enemy.draw(g2);
                 }
             }
         }
@@ -66,7 +61,7 @@ public class Round {
             return;
         }else if(spawnTimer >= spawnObjectiveTime && enemies.size() < enemiesPendient){
             synchronized (enemies) {
-                enemies.add(new Enemy(0, 0));
+                enemies.add(new Enemy(-5, -5));
             }
             spawnTimer = 0;
         }
@@ -148,7 +143,7 @@ public class Round {
     }
 
     private final int[][] pathRaw = {
-    {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5},
+    {0,0},{0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5},
     
     {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5},
     {6, 5}, {7, 5}, {8, 5}, {9, 5}, {10, 5},

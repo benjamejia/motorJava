@@ -6,5 +6,5 @@ import games.towerDefense.towers.Turret;
 
 @FunctionalInterface
 public interface ProjectilFactory {
-    Projectil create(int col, int row, double damage, Enemy objective, Turret origin);
+    Projectil create(int col, int row, Enemy objective, Turret origin);
 }
